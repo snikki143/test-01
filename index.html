@@ -2,325 +2,789 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fff0f5">
-  <title>Our Secret Space ♡</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#382014">
+<title>Our Space ♡</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap');
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #fff0f5, #fce1eb, #fff7fa);
-      color: #58364a;
-      min-height: 100vh;
-    }
+:root {
+  --brown: #382014;
+  --brown2: #55331e;
+  --brown3: #70462b;
+  --cream: #fff8ee;
+  --cream2: #f5e9d9;
+  --text: #302117;
+  --muted: #887766;
+  --line: #e9d9c7;
+}
 
-    button, input {
-      font: inherit;
-    }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .app {
-      max-width: 850px;
-      min-height: 100vh;
-      margin: auto;
-      padding: 25px 18px;
-    }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: #e8d9c8;
+  min-height: 100vh;
+}
 
-    header {
-      text-align: center;
-      padding: 20px 10px 25px;
-    }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
 
-    .heart {
-      font-size: 35px;
-    }
+.layout {
+  display: grid;
+  grid-template-columns: 285px minmax(0,1fr) 370px;
+  min-height: 100vh;
+  max-width: 1800px;
+  margin: auto;
+  overflow: hidden;
+  background: var(--cream);
+}
 
-    h1 {
-      font-family: Georgia, serif;
-      font-size: clamp(30px, 7vw, 43px);
-      color: #bd668b;
-      margin: 10px 0;
-    }
+/* LEFT SIDEBAR */
 
-    .subtitle {
-      color: #a67b90;
-      font-size: 14px;
-    }
+.sidebar {
+  background: linear-gradient(160deg,#482b1b,#28160e);
+  color: #f9eee0;
+  padding: 34px 14px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
 
-    .privacy {
-      background: #fff;
-      border: 1px solid #f3d6e2;
-      padding: 11px;
-      border-radius: 30px;
-      text-align: center;
-      margin: 10px auto 22px;
-      max-width: 390px;
-      font-size: 12px;
-      color: #a6537b;
-    }
+.logo {
+  text-align: center;
+  margin: 5px 0 47px;
+}
 
-    .chat {
-      background: rgba(255,255,255,.88);
-      border: 1px solid #f4d8e4;
-      border-radius: 23px;
-      overflow: hidden;
-      box-shadow: 0 12px 35px rgba(163,91,124,.12);
-    }
+.logo h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 39px;
+  font-weight: 500;
+}
 
-    .chat-header {
-      padding: 17px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #fff7fa;
-      border-bottom: 1px solid #f5e2ea;
-    }
+.logo p {
+  color: #c9a48a;
+  margin-top: 5px;
+}
 
-    .avatar {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: #f5d4e2;
-      display: grid;
-      place-items: center;
-      font-size: 22px;
-    }
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
 
-    .person {
-      flex: 1;
-    }
+.nav button {
+  color: #eee1d3;
+  background: transparent;
+  border: none;
+  padding: 16px;
+  border-radius: 17px;
+  text-align: left;
+  font-size: 17px;
+  display: flex;
+  gap: 17px;
+  align-items: center;
+  transition: .2s;
+}
 
-    .person h3 {
-      font-size: 16px;
-    }
+.nav button:hover,
+.nav button.active {
+  background: rgba(191,139,99,.27);
+}
 
-    .person p {
-      font-size: 12px;
-      color: #b27c96;
-      margin-top: 4px;
-    }
+.nav .symbol {
+  width: 27px;
+  font-size: 22px;
+  text-align: center;
+}
 
-    .messages {
-      min-height: 370px;
-      max-height: 480px;
-      overflow-y: auto;
-      padding: 22px 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+.side-art {
+  margin-top: auto;
+  text-align: center;
+  padding-top: 65px;
+  color: #bb8055;
+  font-size: 65px;
+  font-family: Georgia,serif;
+}
 
-    .message {
-      max-width: 80%;
-      padding: 12px 15px;
-      border-radius: 17px;
-      font-size: 14px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
+.side-art small {
+  display: block;
+  font-size: 12px;
+  color: #b48a6b;
+  letter-spacing: 3px;
+  margin-top: 8px;
+}
 
-    .received {
-      align-self: flex-start;
-      background: #faeaf1;
-      border-bottom-left-radius: 5px;
-    }
+/* MAIN AREA */
 
-    .sent {
-      align-self: flex-end;
-      background: #eec9d9;
-      border-bottom-right-radius: 5px;
-    }
+.main {
+  background:
+    radial-gradient(ellipse at 60% 45%,rgba(255,255,255,.8),transparent 70%),
+    linear-gradient(135deg,#fffaf3,#f8eddf);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--line);
+}
 
-    .time {
-      display: block;
-      font-size: 10px;
-      opacity: .65;
-      margin-top: 5px;
-      text-align: right;
-    }
+.chat-header {
+  min-height: 119px;
+  padding: 20px 27px;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  border-bottom: 1px solid var(--line);
+}
 
-    .composer {
-      display: flex;
-      gap: 9px;
-      padding: 14px;
-      background: #fff8fb;
-      border-top: 1px solid #f5e2ea;
-    }
+.back {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--brown);
+}
 
-    .composer input {
-      min-width: 0;
-      flex: 1;
-      padding: 13px 15px;
-      border: 1px solid #efd4e0;
-      border-radius: 30px;
-      outline: none;
-      background: white;
-      color: #58364a;
-    }
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#d6a477,#765039);
+  color: white;
+  font-size: 26px;
+  flex-shrink: 0;
+}
 
-    .composer input:focus {
-      border-color: #c7789d;
-    }
+.person { flex: 1; min-width: 0; }
+.person h2 { font-size: 21px; }
+.person p { color: var(--muted); margin-top: 4px; }
 
-    .send {
-      border: none;
-      border-radius: 50%;
-      width: 46px;
-      height: 46px;
-      background: #c7789d;
-      color: white;
-      cursor: pointer;
-      font-size: 19px;
-    }
+.online {
+  color: #469e57;
+  font-size: 12px;
+}
 
-    .send:hover {
-      background: #ad5c84;
-    }
+.header-actions {
+  display: flex;
+  gap: 20px;
+}
 
-    .notice {
-      background: #fff;
-      border: 1px solid #f1d7e2;
-      padding: 16px;
-      border-radius: 15px;
-      margin-top: 20px;
-      font-size: 12px;
-      line-height: 1.7;
-      color: #94677d;
-      text-align: center;
-    }
+.header-actions button {
+  border: 0;
+  background: transparent;
+  font-size: 25px;
+  color: var(--brown);
+}
 
-    footer {
-      text-align: center;
-      padding: 25px 5px;
-      font-family: Georgia, serif;
-      color: #b77b96;
-      font-size: 14px;
-    }
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 350px;
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-    @media(max-width: 500px) {
-      .app {
-        padding: 12px;
-      }
+.day {
+  align-self: center;
+  background: #efe1ce;
+  border-radius: 30px;
+  padding: 9px 24px;
+  margin-bottom: 2px;
+  color: #71563c;
+}
 
-      .messages {
-        min-height: 350px;
-      }
-    }
-  </style>
+.message-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  max-width: 90%;
+}
+
+.message-row.mine {
+  align-self: flex-end;
+}
+
+.message-row.theirs {
+  align-self: flex-start;
+}
+
+.mini-avatar {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#d2a17a,#71472e);
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.bubble {
+  padding: 14px 18px;
+  border-radius: 22px;
+  background: #f1e5d6;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.mine .bubble {
+  background: linear-gradient(120deg,#734729,#482a17);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.theirs .bubble {
+  border-bottom-left-radius: 6px;
+}
+
+.time {
+  display: block;
+  text-align: right;
+  font-size: 11px;
+  opacity: .72;
+  margin-top: 6px;
+}
+
+.typing {
+  align-self: flex-start;
+  color: #a18a75;
+  padding: 10px 20px;
+  background: #f1e5d6;
+  border-radius: 20px;
+}
+
+.composer {
+  margin: 0 26px 25px;
+  padding: 7px 10px 7px 18px;
+  border: 1px solid #e0cfbb;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,.55);
+}
+
+.composer input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 12px 0;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.tool {
+  border: none;
+  background: transparent;
+  font-size: 23px;
+  color: var(--brown);
+}
+
+.send {
+  border: none;
+  background: #56331c;
+  color: white;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  font-size: 23px;
+}
+
+.send:hover { background: #815333; }
+
+/* RIGHT PANEL */
+
+.right {
+  background: linear-gradient(160deg,#fff9f0,#f8eddf);
+  padding: 90px 20px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.photo-card,
+.info-card {
+  border: 1px solid #e7d6c2;
+  border-radius: 23px;
+  overflow: hidden;
+  background: rgba(255,255,255,.38);
+}
+
+.couple-photo {
+  height: 180px;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(0deg,rgba(60,34,18,.25),transparent),
+    linear-gradient(130deg,#c7a181,#8a6548,#dfc4a5);
+  font-size: 60px;
+}
+
+.photo-info { padding: 15px 19px 20px; }
+.photo-info h2 {
+  font-family: 'Dancing Script',cursive;
+  font-size: 34px;
+  font-weight: 500;
+}
+.photo-info p { color: #705d4a; }
+
+.info-card {
+  display: flex;
+  align-items: center;
+  padding: 17px;
+  gap: 18px;
+}
+
+.info-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #f2e5d5;
+  font-size: 25px;
+}
+
+.info-card p {
+  color: #796653;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.info-card strong {
+  font-size: 18px;
+}
+
+.section {
+  flex: 1;
+  padding: 35px;
+  overflow-y: auto;
+}
+
+.section h2 {
+  font-family: 'Dancing Script',cursive;
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.section p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.panel-card {
+  padding: 22px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  margin-bottom: 15px;
+}
+
+.panel-card input,
+.panel-card textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 10px;
+  outline: none;
+  background: #fffaf5;
+}
+
+.panel-card button {
+  background: var(--brown2);
+  color: white;
+  border: 0;
+  border-radius: 12px;
+  padding: 11px 17px;
+  margin-top: 12px;
+}
+
+.item {
+  padding: 13px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.item:last-child { border: 0; }
+
+@media(max-width:1100px) {
+  .layout { grid-template-columns: 220px minmax(0,1fr); }
+  .right { display: none; }
+}
+
+@media(max-width:650px) {
+  .layout { display: flex; flex-direction: column; }
+  .sidebar { padding: 13px; }
+  .logo { margin: 0 0 12px; }
+  .logo h1 { font-size: 30px; }
+  .logo p { display: none; }
+  .nav { flex-direction: row; overflow-x: auto; gap: 5px; }
+  .nav button { padding: 10px 12px; font-size: 12px; white-space: nowrap; }
+  .nav .symbol { font-size: 16px; width: auto; }
+  .side-art { display: none; }
+  .chat-header { min-height: 85px; padding: 13px; }
+  .avatar { width: 45px; height: 45px; }
+  .person h2 { font-size: 16px; }
+  .header-actions { gap: 12px; }
+  .header-actions button { font-size: 19px; }
+  .messages { padding: 17px 12px; }
+  .message-row { max-width: 95%; }
+  .bubble { font-size: 14px; padding: 11px 13px; }
+  .composer { margin: 0 10px 14px; }
+  .composer input { font-size: 13px; }
+  .section { padding: 23px 17px; }
+}
+</style>
 </head>
 
 <body>
-  <main class="app">
 
-    <header>
-      <div class="heart">♡</div>
-      <h1>Our Secret Space</h1>
-      <p class="subtitle">A little world, just for us 💗</p>
-    </header>
+<div class="layout">
 
-    <div class="privacy">
-      ♡ A private space for two — preview version
+  <aside class="sidebar">
+    <div class="logo">
+      <h1>Our Space ♡</h1>
+      <p>Just Us</p>
     </div>
 
-    <section class="chat">
+    <nav class="nav">
+      <button class="active" data-page="chat">
+        <span class="symbol">☏</span> Chat
+      </button>
+      <button data-page="memories">
+        <span class="symbol">▧</span> Our Memories
+      </button>
+      <button data-page="todo">
+        <span class="symbol">☑</span> To-Do Together
+      </button>
+      <button data-page="notes">
+        <span class="symbol">▤</span> Notes
+      </button>
+      <button data-page="countdowns">
+        <span class="symbol">▦</span> Countdowns
+      </button>
+      <button data-page="settings">
+        <span class="symbol">⚙</span> Settings
+      </button>
+    </nav>
 
-      <div class="chat-header">
-        <div class="avatar">💕</div>
+    <div class="side-art">
+      ♡
+      <small>ALWAYS & FOREVER</small>
+    </div>
+  </aside>
 
-        <div class="person">
-          <h3>My Special Person</h3>
-          <p>Our little corner of the world</p>
-        </div>
+  <main class="main" id="mainContent">
 
-        <div>♡</div>
+    <div class="chat-header">
+      <button class="back" aria-label="Back">←</button>
+      <div class="avatar">♡</div>
+      <div class="person">
+        <h2>My Person ♡</h2>
+        <p><span class="online">●</span> Online now</p>
       </div>
-
-      <div class="messages" id="messages">
-        <div class="message received">
-          Hey you! ❤️
-          <span class="time">A little hello</span>
-        </div>
-
-        <div class="message sent">
-          Welcome to our little space! 🥺💕
-          <span class="time">A little love</span>
-        </div>
-
-        <div class="message received">
-          Just you and me. Always. ♡
-          <span class="time">A little reminder</span>
-        </div>
+      <div class="header-actions">
+        <button title="Voice call">♧</button>
+        <button title="Video call">▣</button>
+        <button title="Information">ⓘ</button>
       </div>
-
-      <form class="composer" id="chatForm">
-        <input
-          id="messageInput"
-          type="text"
-          placeholder="Write something sweet..."
-          maxlength="1000"
-          autocomplete="off"
-          required
-        >
-
-        <button class="send" type="submit" aria-label="Send message">
-          ➤
-        </button>
-      </form>
-
-    </section>
-
-    <div class="notice">
-      🔒 <strong>Preview mode only</strong><br>
-      Messages currently stay in this browser session.
-      They are not transmitted to another person or encrypted.
-      Do not enter private information yet.
     </div>
 
-    <footer>
-      Made with love, just for two ♡
-    </footer>
+    <div class="messages" id="messages">
+      <div class="day">Today</div>
+
+      <div class="message-row theirs">
+        <div class="mini-avatar">♡</div>
+        <div class="bubble">
+          Heyy ♡
+          <span class="time">11:02 PM</span>
+        </div>
+      </div>
+
+      <div class="message-row theirs">
+        <div class="mini-avatar">♡</div>
+        <div class="bubble">
+          Miss youu.. 🥺
+          <span class="time">11:03 PM</span>
+        </div>
+      </div>
+
+      <div class="message-row mine">
+        <div class="bubble">
+          Heyy ♡
+          <span class="time">11:03 PM ✓✓</span>
+        </div>
+      </div>
+
+      <div class="message-row mine">
+        <div class="bubble">
+          Miss you more... 🤍
+          <span class="time">11:04 PM ✓✓</span>
+        </div>
+      </div>
+
+      <div class="message-row theirs">
+        <div class="mini-avatar">♡</div>
+        <div class="bubble">
+          Can we plan a small trip next month? 🌿
+          <span class="time">11:05 PM</span>
+        </div>
+      </div>
+
+      <div class="message-row mine">
+        <div class="bubble">
+          Yess! Just the two of us ♡
+          <span class="time">11:06 PM ✓✓</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="composer" id="chatForm">
+      <button class="tool" type="button" id="emojiButton">☻</button>
+      <input id="messageInput" placeholder="Type a message..." maxlength="2000" autocomplete="off">
+      <button class="tool" type="button" title="Attachment">📎</button>
+      <button class="tool" type="button" title="Photo">▧</button>
+      <button class="send" type="submit">➤</button>
+    </form>
 
   </main>
 
-  <script>
-    const form = document.getElementById("chatForm");
-    const input = document.getElementById("messageInput");
-    const messages = document.getElementById("messages");
+  <aside class="right">
+    <div class="photo-card">
+      <div class="couple-photo">♡</div>
+      <div class="photo-info">
+        <h2>Our Space ♡</h2>
+        <p>A private chat, just for us.</p>
+      </div>
+    </div>
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
+    <div class="info-card">
+      <div class="info-icon">▦</div>
+      <div>
+        <p>Together Since</p>
+        <strong>12 Oct 2024</strong>
+      </div>
+    </div>
 
-      const text = input.value.trim();
+    <div class="info-card">
+      <div class="info-icon">♡</div>
+      <div>
+        <p>Days Together</p>
+        <strong id="daysTogether">Loading...</strong>
+      </div>
+    </div>
 
-      if (!text) return;
+    <div class="info-card">
+      <div class="info-icon">✧</div>
+      <div>
+        <p>Next Plan</p>
+        <strong>A Small Trip ♡</strong>
+      </div>
+    </div>
+  </aside>
 
-      const bubble = document.createElement("div");
-      bubble.className = "message sent";
+</div>
 
-      // textContent prevents entered text from being treated as HTML.
-      bubble.appendChild(document.createTextNode(text));
+<script>
+const messages = document.getElementById("messages");
+const form = document.getElementById("chatForm");
+const input = document.getElementById("messageInput");
 
-      const time = document.createElement("span");
-      time.className = "time";
-      time.textContent = new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
-      });
+function currentTime() {
+  return new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
 
-      bubble.appendChild(time);
-      messages.appendChild(bubble);
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
 
-      input.value = "";
-      messages.scrollTop = messages.scrollHeight;
-      input.focus();
-    });
-  </script>
+  const text = input.value.trim();
+  if (!text) return;
+
+  const row = document.createElement("div");
+  row.className = "message-row mine";
+
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
+  bubble.appendChild(document.createTextNode(text));
+
+  const time = document.createElement("span");
+  time.className = "time";
+  time.textContent = currentTime() + " ✓";
+
+  bubble.appendChild(time);
+  row.appendChild(bubble);
+  messages.appendChild(row);
+
+  input.value = "";
+  messages.scrollTop = messages.scrollHeight;
+});
+
+document.getElementById("emojiButton").addEventListener("click", () => {
+  input.value += " ♡";
+  input.focus();
+});
+
+const startDate = new Date(2024, 9, 12);
+const today = new Date();
+const days = Math.floor((today - startDate) / 86400000) + 1;
+
+document.getElementById("daysTogether").textContent =
+  days > 0 ? days + " Days" : "Set your date";
+
+const pages = {
+  memories: {
+    title: "Our Memories ♡",
+    description: "Every little moment is worth keeping.",
+    content: `
+      <div class="panel-card">
+        <h3>Save a memory 📸</h3>
+        <input id="memoryText" placeholder="Give your memory a name...">
+        <button onclick="addItem('memoryText','memoryList')">Save memory</button>
+      </div>
+      <div class="panel-card" id="memoryList">
+        <div class="item">♡ Our first hello</div>
+        <div class="item">♡ Our favourite moments</div>
+      </div>`
+  },
+  todo: {
+    title: "To-Do Together ♡",
+    description: "Little plans, big memories.",
+    content: `
+      <div class="panel-card">
+        <h3>Add a plan 🌿</h3>
+        <input id="todoText" placeholder="Something we should do...">
+        <button onclick="addItem('todoText','todoList',true)">Add plan</button>
+      </div>
+      <div class="panel-card" id="todoList">
+        <div class="item">☐ Plan a small trip</div>
+        <div class="item">☐ Watch our favourite movie</div>
+      </div>`
+  },
+  notes: {
+    title: "Our Notes ♡",
+    description: "Little things we want to remember.",
+    content: `
+      <div class="panel-card">
+        <h3>Write a note 📝</h3>
+        <textarea id="noteText" rows="4" placeholder="Write something sweet..."></textarea>
+        <button onclick="addItem('noteText','noteList')">Save note</button>
+      </div>
+      <div class="panel-card" id="noteList"></div>`
+  },
+  countdowns: {
+    title: "Our Countdowns ♡",
+    description: "Something beautiful is waiting for us.",
+    content: `
+      <div class="panel-card">
+        <h3>Our next adventure ✨</h3>
+        <p>A little trip together.</p>
+        <input id="countDate" type="date">
+        <button onclick="showCountdown()">Set countdown</button>
+        <h2 id="countResult"></h2>
+      </div>`
+  },
+  settings: {
+    title: "Our Settings ♡",
+    description: "Make this little space feel like ours.",
+    content: `
+      <div class="panel-card">
+        <h3>Personalize our space</h3>
+        <label>My person's name</label>
+        <input id="personName" placeholder="My Person">
+        <label>Our special date</label>
+        <input id="specialDate" type="date">
+        <button onclick="saveSettings()">Save settings</button>
+      </div>
+      <div class="panel-card">
+        <strong>Security information</strong>
+        <p>This is currently a visual prototype. It does not yet have authentication or end-to-end encryption.</p>
+      </div>`
+  }
+};
+
+function addItem(inputId, listId, checkbox=false) {
+  const field = document.getElementById(inputId);
+  const list = document.getElementById(listId);
+  if (!field || !list || !field.value.trim()) return;
+
+  const item = document.createElement("div");
+  item.className = "item";
+  item.textContent = (checkbox ? "☐ " : "♡ ") + field.value.trim();
+  list.appendChild(item);
+  field.value = "";
+}
+
+function showCountdown() {
+  const value = document.getElementById("countDate").value;
+  const result = document.getElementById("countResult");
+  if (!value) return;
+
+  const difference = Math.ceil(
+    (new Date(value + "T00:00:00") - new Date()) / 86400000
+  );
+
+  result.textContent = difference > 0
+    ? difference + " days to go ♡"
+    : difference === 0 ? "It's today! ♡" : "That date has passed.";
+}
+
+function saveSettings() {
+  const name = document.getElementById("personName").value.trim();
+  if (name) {
+    document.querySelector(".person h2").textContent = name + " ♡";
+  }
+  alert("Preview settings updated!");
+}
+
+document.querySelectorAll(".nav button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".nav button").forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+
+    const page = button.dataset.page;
+    const main = document.getElementById("mainContent");
+
+    if (page === "chat") {
+      main.innerHTML = `
+        <div class="section">
+          <h2>Our Chat ♡</h2>
+          <p>Return to your little conversation.</p>
+          <div class="panel-card">
+            Your chat preview is available when you reload the page.
+          </div>
+        </div>`;
+      return;
+    }
+
+    const data = pages[page];
+
+    main.innerHTML = `
+      <div class="section">
+        <h2>${data.title}</h2>
+        <p>${data.description}</p>
+        ${data.content}
+      </div>`;
+  });
+});
+</script>
 
 </body>
 </html>
