@@ -1,9 +1,15 @@
 
-// OUR SPACE ♡ - JavaScript
+// OUR SPACE ♡
+// Supabase connection setup
 
-const chatForm = document.getElementById("chat-form");
-const messageInput = document.getElementById("message-input");
-const messagesArea = document.querySelector(".messages");
+const SUPABASE_URL = "https://ewmctpkfjjxxcindwhhy.supabase.co/rest/v1/";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_M6QM8sXCJTM3XBRajKM-Cw_LFJnd5VI";
+
+// Initialize Supabase
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
 // Calculate days together
 const startDate = new Date(2024, 9, 12);
@@ -13,8 +19,11 @@ const days = Math.floor(
     (today - startDate) / (1000 * 60 * 60 * 24)
 );
 
-document.getElementById("days-together").textContent =
-    days + " Days ♡";
+const daysElement = document.getElementById("days-together");
+
+if (daysElement) {
+    daysElement.textContent = days + " Days ♡";
+}
 
 // Get current time
 function getCurrentTime() {
@@ -24,39 +33,32 @@ function getCurrentTime() {
     });
 }
 
-// Create a new message
-function sendMessage(event) {
-    event.preventDefault();
+// Temporary local-only demo message.
+// This does NOT send messages to Supabase.
+const chatForm = document.getElementById("chat-form");
+const messageInput = document.getElementById("message-input");
+const messagesArea = document.querySelector(".messages");
 
-    const text = messageInput.value.trim();
+if (chatForm && messageInput && messagesArea) {
+    chatForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    if (!text) return;
+        const text = messageInput.value.trim();
+        if (!text) return;
 
-    // Create message bubble
-    const message = document.createElement("div");
-    message.className = "message sent";
+        const message = document.createElement("div");
+        message.className = "message sent";
 
-    // Message text
-    const messageText = document.createTextNode(text);
-    message.appendChild(messageText);
+        message.appendChild(document.createTextNode(text));
 
-    // Timestamp
-    const time = document.createElement("small");
-    time.textContent = getCurrentTime() + " ✓";
-    message.appendChild(time);
+        const time = document.createElement("small");
+        time.textContent = getCurrentTime();
+        message.appendChild(time);
 
-    // Add message to chat
-    messagesArea.appendChild(message);
-
-    // Clear input
-    messageInput.value = "";
-
-    // Scroll to latest message
-    messagesArea.scrollTop = messagesArea.scrollHeight;
+        messagesArea.appendChild(message);
+        messageInput.value = "";
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    });
 }
 
-// Listen for message submission
-chatForm.addEventListener("submit", sendMessage);
-
-console.log("Our Space ♡ is ready!");
-
+console.log("Our Space ♡ Supabase client initialized!");
