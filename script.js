@@ -2,7 +2,7 @@
 // OUR SPACE ♡
 // Supabase connection
 
-const SUPABASE_URL = "https://ewmctpkfjjxxcindwhhy.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://ewmctpkfjjxxcindwhhy.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_M6QM8sXCJTM3XBRajKM-Cw_LFJnd5VI";
 
 const supabaseClient = window.supabase.createClient(
