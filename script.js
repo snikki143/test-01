@@ -62,3 +62,21 @@ if (chatForm && messageInput && messagesArea) {
 }
 
 console.log("Our Space ♡ Supabase client initialized!");
+
+// Test Supabase connection
+async function testSupabaseConnection() {
+    const { data, error } = await supabaseClient
+        .from("conversations")
+        .select("id")
+        .limit(1);
+
+    if (error) {
+        console.error("Supabase connection test failed:", error.message);
+        return;
+    }
+
+    console.log("Supabase database connection successful!");
+    console.log("Conversation records found:", data.length);
+}
+
+testSupabaseConnection();
