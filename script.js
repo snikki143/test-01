@@ -80,3 +80,68 @@ async function testSupabaseConnection() {
 }
 
 testSupabaseConnection();
+
+
+// OUR SPACE - LOGIN SYSTEM
+
+const loginScreen = document.getElementById("login-screen");
+const appScreen = document.querySelector(".app");
+const loginForm = document.getElementById("login-form");
+const loginError = document.getElementById("login-error");
+
+// Check whether a user is already logged in
+async function checkLogin() {
+    const { data: { session } } =
+        await supabaseClient.auth.getSession();
+
+    if (session) {
+        loginScreen.style.display = "none";
+        appScreen.style.display = "flex";
+    } else {
+        loginScreen.style.display = "flex";
+        appScreen.style.display = "none";
+    }
+}
+
+// Login with email and password
+loginForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value;
+
+    loginError.textContent = "Signing in...";
+
+    const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+    if (error) {
+        loginError.textContent = error.message;
+        return;
+    }
+
+    loginError.textContent = "";
+
+    loginScreen.style.display = "none";
+    appScreen.style.display = "flex";
+
+    console.log("Welcome to Our Space ♡");
+});
+
+// Listen for login and logout changes
+supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (session) {
+        loginScreen.style.display = "none";
+        appScreen.style.display = "flex";
+    } else {
+        loginScreen.style.display = "flex";
+        appScreen.style.display = "none";
+    }
+});
+
+// Check login when website opens
+checkLogin();
+
